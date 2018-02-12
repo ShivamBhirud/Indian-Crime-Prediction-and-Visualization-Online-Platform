@@ -1,0 +1,74 @@
+<!-- data>{% for data in data %}
+	{{ data }}
+	<br>
+{% endfor %}
+-->
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title> Crime in India Bar Chart</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"> 
+
+</head>
+
+<body>
+	<div class="container">
+		<canvas id="myChart"></canvas>
+	</div>
+
+
+<script>
+	var ctx = document.getElementById("myChart").getContext('2d');
+	var myChart = new Chart(ctx, {
+  	type: 'bar',
+  	data: {
+        labels: ["2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014"],
+    	   datasets: [{
+            type: 'bar',
+            label: 'Rape',
+            data: [15694, 15970, 15357, 17682, 17701, 18725, 20139, 21001, 20928, 21665,
+            23634, 24217, 33707, 38678],
+            backgroundColor: 'grey'
+           },{
+            type: 'line',
+            label: 'Rape',
+            fill: false,
+            borderWidth: 4,
+            data: [15694, 15970, 15357, 17682, 17701, 18725, 20139, 21001, 20928, 21665,
+            23634, 24217, 33707, 38678],
+            borderColor: 'red'
+           }]
+  	  },
+	options:{
+		title:{
+			display:true,
+			text: 'Crime against women in India',
+			fontSize:25
+		},
+		legend:{
+			position:'right',
+			labels:{
+				fontColor:'black'
+			}
+		}
+
+	}
+	
+
+	});
+
+  
+</script>
+
+{% for data in data %}
+{{ data }}
+<br>
+{% endfor %}
+
+</body>
+
+</html>
+
