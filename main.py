@@ -49,7 +49,7 @@ def women():
 	accuracy = lr.score(X_test, y_test)*100
 	tst = [[2015,38740,61511,8700,88235,10735,132877,15,1870,11230,75,0], [2004,18233,15578,7026,34567,10001,58121,89,5748,3592,1378,0]]
 	prediction = lr.predict(tst)
-	
+	#hello
 	return render_template('women.html',data = [year,accuracy,X_test,prediction])
 	#return jsonify({"score": accuracy, "Predicted values are: ": prediction.tolist(), "testing set is: ":X_test.tolist(), 
 	#	"coefficients": lr.coef_.tolist(), "intercepts": lr.intercept_})
