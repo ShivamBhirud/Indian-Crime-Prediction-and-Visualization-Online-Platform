@@ -1,7 +1,7 @@
 from flask import Flask,render_template, request, flash, url_for,jsonify
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+from flask import json
 from sklearn import cross_validation,preprocessing
 from sklearn.linear_model import LinearRegression
 from sklearn.externals import joblib
@@ -28,31 +28,107 @@ def Services2():
 def Services3():
 	return render_template("stats.html")
 
+def linearReg(year):
+	df = pd.read_csv("static/CAW.csv")
+	test = [year]
+	
+	length = len(df.columns) - 2	#first col of year and last col of total 
+
+	for i in range(1,length +1 ):
+		X = df.iloc[:,0].values
+		y = df.iloc[:,i].values
+		regressor = LinearRegression()
+		regressor.fit(X.reshape(-1,1),y)
+		year = np.array(year)
+		prediction = regressor.predict(year.reshape(-1,1))
+		test = np.append(test,prediction)
+	return test
+
+
 @app.route('/women.html',methods = ['POST'])
 def women():
 
-	#Crime_type = request.form.get("type")
 	year = request.form.get("Predict_Year")
-	df = pd.read_csv("static/CAW.csv")
+	C_type = request.form.get("C_Type")
+	state = request.form.get("state")
 
-	X = df.iloc[:,:-1].values
-	y = df.iloc[:,12].values
-	X_train,X_test,y_train,y_test = cross_validation.train_test_split(X,y,test_size=0.2)
+	df = pd.read_csv("static/C2001_16.csv", header=None)
+
+	data1 = df.loc[df[0]==state].values
+	for x in data1:
+		if x[1] == C_type:
+			test = x
+			break
+
+
+	l = len(df.columns)
+
+	trendChangingYear = 2
+	accuracy_max = 0.65
+	#Andhra Pradesh,RAPE,871,1002,946,1016,935,1049,1070,1257,1188,1362,1442,1341,1635,1940,2132,2272
+	xTrain = np.array([2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016])
+	yTrain = test[2:18]
+
+	X = df.iloc[0,2:l].values
+	y = test[2:]
 	regressor = LinearRegression()
-	regressor.fit(X_train,y_train)
-	joblib.dump(regressor, "linear_regression_model.pkl")
-	#joblib.dump(X_test, "training_data.pkl")
-	#joblib.dump(y_test, "training_labels.pkl")
-	lr = joblib.load("./linear_regression_model.pkl")
-	#training_set = joblib.load("./training_data.pkl")
-	#labels = joblib.load("./training_labels.pkl")
-	accuracy = lr.score(X_test, y_test)*100
-	tst = [[2015,38740,61511,8700,88235,10735,132877,15,1870,11230,75,0], [2004,18233,15578,7026,34567,10001,58121,89,5748,3592,1378,0]]
-	prediction = lr.predict(tst)
-	#hello
-	return render_template('women.html',data = [year,accuracy,X_test,prediction])
+	regressor.fit(X.reshape(-1,1),y)
+	accuracy = regressor.score(X.reshape(-1,1),y)
+	print accuracy
+	accuracy_max = 0.80
+	if(accuracy < 0.80):
+		for a in range(3,l-4):
+
+			X = df.iloc[0,a:l].values
+			y = test[a:]
+			regressor = LinearRegression()
+			regressor.fit(X.reshape(-1,1),y)
+			accuracy = regressor.score(X.reshape(-1,1),y)
+			if (accuracy > accuracy_max):
+				accuracy_max = accuracy
+				print accuracy_max
+				trendChangingYear = a
+	print trendChangingYear
+	print test[trendChangingYear]
+	print xTrain[trendChangingYear-2]
+	yTrain = test[trendChangingYear:]
+	xTrain = xTrain[trendChangingYear-2:]
+	regressor.fit(xTrain.reshape(-1,1),yTrain)
+	accuracy = regressor.score(xTrain.reshape(-1,1),yTrain)
+
+	year = int(year)
+	#year = np.array(year)
+	y = test[2:]
+	for j in range(2017,year+1):
+		prediction = regressor.predict(j)
+		if(prediction < 0):
+			prediction = 0
+		y = np.append(y,prediction)
+	y = np.append(y,0)
+	b = []
+	for k in range(2001,year+1):
+		a = str(k)
+		b = np.append(b,a)
+	y = list(y)
+	yearLable = list(b)
+
+	
+
+	return render_template('women.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
+
+
 	#return jsonify({"score": accuracy, "Predicted values are: ": prediction.tolist(), "testing set is: ":X_test.tolist(), 
 	#	"coefficients": lr.coef_.tolist(), "intercepts": lr.intercept_})
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5000, debug=True)
 
+
+
+
+	#joblib.dump(regressor, "linear_regression_model.pkl")
+	#joblib.dump(X_test, "training_data.pkl")
+	#joblib.dump(y_test, "training_labels.pkl")
+	#lr = joblib.load("./linear_regression_model.pkl")
+	#training_set = joblib.load("./training_data.pkl")
+	#labels = joblib.load("./training_labels.pkl")
+	#prediction = lr.predict(tst)
