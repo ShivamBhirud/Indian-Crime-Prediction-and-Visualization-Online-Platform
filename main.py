@@ -5,6 +5,7 @@ from flask import json
 from sklearn import cross_validation,preprocessing
 from sklearn.linear_model import LinearRegression
 from sklearn.externals import joblib
+from sklearn.ensemble import RandomForestRegressor
 
 app = Flask("__main__")
 
@@ -28,6 +29,7 @@ def Services2():
 def Services3():
 	return render_template("stats.html")
 
+'''
 def linearReg(year):
 	df = pd.read_csv("static/CAW.csv")
 	test = [year]
@@ -43,7 +45,7 @@ def linearReg(year):
 		prediction = regressor.predict(year.reshape(-1,1))
 		test = np.append(test,prediction)
 	return test
-
+'''
 
 @app.route('/women.html',methods = ['POST'])
 def women():
@@ -65,7 +67,7 @@ def women():
 
 	trendChangingYear = 2
 	accuracy_max = 0.65
-	#Andhra Pradesh,RAPE,871,1002,946,1016,935,1049,1070,1257,1188,1362,1442,1341,1635,1940,2132,2272
+
 	xTrain = np.array([2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016])
 	yTrain = test[2:18]
 
@@ -75,8 +77,8 @@ def women():
 	regressor.fit(X.reshape(-1,1),y)
 	accuracy = regressor.score(X.reshape(-1,1),y)
 	print accuracy
-	accuracy_max = 0.80
-	if(accuracy < 0.80):
+	accuracy_max = 0.65
+	if(accuracy < 0.65):
 		for a in range(3,l-4):
 
 			X = df.iloc[0,a:l].values
