@@ -132,7 +132,7 @@ def children():
 	C_type = request.form.get("C_Type")
 	state = request.form.get("state")
 
-	df = pd.read_csv("static/StateCACPred2001_16.csv", header=None)
+	df = pd.read_csv("static/Statewise Cases Reported of Crimes Committed Against Children 1994-2016.csv", header=None)
 
 	data1 = df.loc[df[0]==state].values
 	for x in data1:
@@ -146,8 +146,8 @@ def children():
 	trendChangingYear = 2
 	accuracy_max = 0.65
 
-	xTrain = np.array([2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016])
-	yTrain = test[2:18]
+	xTrain = np.array([1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016])
+	yTrain = test[2:25]
 
 	X = df.iloc[0,2:l].values
 	y = test[2:]
@@ -186,7 +186,7 @@ def children():
 		y = np.append(y,prediction)
 	y = np.append(y,0)
 	b = []
-	for k in range(2001,year+1):
+	for k in range(1994,year+1):
 		a = str(k)
 		b = np.append(b,a)
 	y = list(y)
