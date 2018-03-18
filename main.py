@@ -228,7 +228,7 @@ def ipc():
 	print accuracy
 	accuracy_max = 0.65
 	if(accuracy < 0.65):
-		for a in range(3,l-4):
+		for a in range(3,l-8):
 
 			X = df.iloc[0,a:l].values
 			y = test[a:]
@@ -299,7 +299,7 @@ def sll():
 	print accuracy
 	accuracy_max = 0.65
 	if(accuracy < 0.65):
-		for a in range(3,l-4):
+		for a in range(3,l-8):
 
 			X = df.iloc[0,a:l].values
 			y = test[a:]
