@@ -1,8 +1,4 @@
-<!-- data>{% for data in data %}
-	{{ data }}
-	<br>
-{% endfor %}
--->
+
 <!doctype html>
 <html>
 
@@ -16,6 +12,7 @@
 
 <body>
 	<center>
+		{{msg}}
 		<br>
 		<h3>"{{C_type}}" Cases in {{state}} upto Year {{year}}</h3>
 	</center>
@@ -48,12 +45,34 @@
            }]
   	  },
 	options:{
+		responsive: true,
 		title:{
 			display:true,
 			fontSize:25
 		},
+		scales: {
+			yAxes: [{
+			scaleLabel: {
+				display: true,
+				labelString: 'Number Of Crimes'
+			},
+			ticks: {
+                  fontColor: "red", // this here
+            },
+			}],
+			xAxes: [{
+			scaleLabel: {
+				display: true,
+				labelString: 'Years'
+			},
+			ticks: {
+                  fontColor: "red", // this here
+            },
+			}]
+		} ,
 		legend:{
 			position:'right',
+
 			labels:{
 				fontColor:'black'
 			}
@@ -66,16 +85,6 @@
 
   
 </script>
-
-{% for data in data %}
-{{ data }}
-<br>
-<br>
-{% endfor %}
-{{pred_data}}
-<br>
-<br>
-{{years}}
 </body>
 
 </html>
