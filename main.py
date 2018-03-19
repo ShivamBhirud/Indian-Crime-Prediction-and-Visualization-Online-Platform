@@ -7,7 +7,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.externals import joblib
 from sklearn.ensemble import RandomForestRegressor
 from plotly.offline import init_notebook_mode, iplot
-from IPython.display import display, HTML
+
 
 
 app = Flask(__name__)
@@ -36,24 +36,6 @@ def womenViz():
 def Services3():
 	return render_template("stats.html")
 
-'''
-def linearReg(year):
-	df = pd.read_csv("static/CAW.csv")
-	test = [year]
-	
-	length = len(df.columns) - 2	#first col of year and last col of total 
-
-	for i in range(1,length +1 ):
-		X = df.iloc[:,0].values
-		y = df.iloc[:,i].values
-		regressor = LinearRegression()
-		regressor.fit(X.reshape(-1,1),y)
-		year = np.array(year)
-		prediction = regressor.predict(year.reshape(-1,1))
-		test = np.append(test,prediction)
-	return test
-'''
-
 @app.route('/women.html',methods = ['POST'])
 def women():
 
@@ -71,7 +53,6 @@ def women():
 
 
 	l = len(df.columns)
-
 	trendChangingYear = 2
 	accuracy_max = 0.65
 
@@ -100,30 +81,35 @@ def women():
 	print trendChangingYear
 	print test[trendChangingYear]
 	print xTrain[trendChangingYear-2]
-	yTrain = test[trendChangingYear:]
-	xTrain = xTrain[trendChangingYear-2:]
-	regressor.fit(xTrain.reshape(-1,1),yTrain)
-	accuracy = regressor.score(xTrain.reshape(-1,1),yTrain)
-
 	year = int(year)
-	#year = np.array(year)
 	y = test[2:]
-	for j in range(2017,year+1):
-		prediction = regressor.predict(j)
-		if(prediction < 0):
-			prediction = 0
-		y = np.append(y,prediction)
-	y = np.append(y,0)
 	b = []
-	for k in range(2001,year+1):
-		a = str(k)
-		b = np.append(b,a)
-	y = list(y)
-	yearLable = list(b)
+	if accuracy_max < 0.65:
+		for k in range(2001,2017):
+			a = str(k)
+			b = np.append(b,a)
+		y = list(y)
+		yearLable = list(b)
+		year = 2016
+		msg = "Data is not Suitable for prediction"
+	else:
 
+		for j in range(2017,year+1):
+			prediction = regressor.predict(j)
+			if(prediction < 0):
+				prediction = 0
+			y = np.append(y,prediction)
+		y = np.append(y,0)
+
+		for k in range(2001,year+1):
+			a = str(k)
+			b = np.append(b,a)
+		y = list(y)
+		yearLable = list(b)
+		msg = ""
 	
 
-	return render_template('women.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
+	return render_template('women.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg, state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
 
 @app.route('/children.html',methods = ['POST'])
 def children():
