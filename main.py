@@ -10,7 +10,7 @@ from plotly.offline import init_notebook_mode, iplot
 from IPython.display import display, HTML
 
 
-app = Flask("__main__")
+app = Flask(__name__)
 
 @app.route('/')
 def Index():
@@ -267,6 +267,7 @@ def ipc():
 
 	return render_template('ipc.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
 
+
 @app.route('/sll.html',methods = ['POST'])
 def sll():
 
@@ -299,7 +300,7 @@ def sll():
 	print accuracy
 	accuracy_max = 0.65
 	if(accuracy < 0.65):
-		for a in range(3,l-8):
+		for a in range(3,l-4):
 
 			X = df.iloc[0,a:l].values
 			y = test[a:]
@@ -337,9 +338,7 @@ def sll():
 	
 
 	return render_template('sll.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
-	
-	#return jsonify({"score": accuracy, "Predicted values are: ": prediction.tolist(), "testing set is: ":X_test.tolist(), 
-	#	"coefficients": lr.coef_.tolist(), "intercepts": lr.intercept_})
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5000, debug=True)
 
