@@ -84,14 +84,13 @@ def women():
 	year = int(year)
 	y = test[2:]
 	b = []
-	if accuracy_max < 0.65:
+	if accuracy < 0.60:
 		for k in range(2001,2017):
 			a = str(k)
 			b = np.append(b,a)
 		y = list(y)
 		yearLable = list(b)
-		year = 2016
-		msg = "Data is not Suitable for prediction"
+		msg = "Data is not Sutaible for prediction"
 	else:
 
 		for j in range(2017,year+1):
@@ -109,7 +108,7 @@ def women():
 		msg = ""
 	
 
-	return render_template('women.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg, state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
+	return render_template('women.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg,state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
 
 @app.route('/children.html',methods = ['POST'])
 def children():
