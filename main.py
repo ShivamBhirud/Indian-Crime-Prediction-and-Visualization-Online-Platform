@@ -32,6 +32,14 @@ def viz():
 def womenViz():	
 	return render_template('womenViz.html')
 
+@app.route('/childrenViz.html')
+def childrenViz():	
+	return render_template('childrenViz.html')
+
+@app.route('/IPCViz.html')
+def IPCViz():	
+	return render_template('IPCViz.html')
+
 @app.route('/stats.html')
 def Services3():
 	return render_template("stats.html")
@@ -67,7 +75,7 @@ def women():
 	print accuracy
 	accuracy_max = 0.65
 	if(accuracy < 0.65):
-		for a in range(3,l-4):
+		for a in range(3,l-8):
 
 			X = df.iloc[0,a:l].values
 			y = test[a:]
