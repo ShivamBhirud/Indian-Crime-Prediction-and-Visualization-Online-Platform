@@ -198,7 +198,6 @@ def ipc():
 
 
 	l = len(df.columns)
-
 	trendChangingYear = 2
 	accuracy_max = 0.65
 
@@ -210,10 +209,12 @@ def ipc():
 	regressor = LinearRegression()
 	regressor.fit(X.reshape(-1,1),y)
 	accuracy = regressor.score(X.reshape(-1,1),y)
+	print "hello1"
 	print accuracy
+	print "hello2"
 	accuracy_max = 0.65
 	if(accuracy < 0.65):
-		for a in range(3,l-8):
+		for a in range(3,l-4):
 
 			X = df.iloc[0,a:l].values
 			y = test[a:]
@@ -227,30 +228,35 @@ def ipc():
 	print trendChangingYear
 	print test[trendChangingYear]
 	print xTrain[trendChangingYear-2]
-	yTrain = test[trendChangingYear:]
-	xTrain = xTrain[trendChangingYear-2:]
-	regressor.fit(xTrain.reshape(-1,1),yTrain)
-	accuracy = regressor.score(xTrain.reshape(-1,1),yTrain)
-
 	year = int(year)
-	#year = np.array(year)
 	y = test[2:]
-	for j in range(2017,year+1):
-		prediction = regressor.predict(j)
-		if(prediction < 0):
-			prediction = 0
-		y = np.append(y,prediction)
-	y = np.append(y,0)
 	b = []
-	for k in range(2001,year+1):
-		a = str(k)
-		b = np.append(b,a)
-	y = list(y)
-	yearLable = list(b)
+	if accuracy < 0.65:
+		for k in range(2001,2017):
+			a = str(k)
+			b = np.append(b,a)
+		y = list(y)
+		yearLable = list(b)
+		year = 2016
+		msg = "Data is not Suitable for prediction"
+	else:
 
+		for j in range(2017,year+1):
+			prediction = regressor.predict(j)
+			if(prediction < 0):
+				prediction = 0
+			y = np.append(y,prediction)
+		y = np.append(y,0)
+
+		for k in range(2001,year+1):
+			a = str(k)
+			b = np.append(b,a)
+		y = list(y)
+		yearLable = list(b)
+		msg = ""
 	
 
-	return render_template('ipc.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
+	return render_template('ipc.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg, state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
 
 
 @app.route('/sll.html',methods = ['POST'])
@@ -270,7 +276,6 @@ def sll():
 
 
 	l = len(df.columns)
-
 	trendChangingYear = 2
 	accuracy_max = 0.65
 
@@ -299,30 +304,40 @@ def sll():
 	print trendChangingYear
 	print test[trendChangingYear]
 	print xTrain[trendChangingYear-2]
-	yTrain = test[trendChangingYear:]
-	xTrain = xTrain[trendChangingYear-2:]
-	regressor.fit(xTrain.reshape(-1,1),yTrain)
-	accuracy = regressor.score(xTrain.reshape(-1,1),yTrain)
-
 	year = int(year)
-	#year = np.array(year)
 	y = test[2:]
-	for j in range(2017,year+1):
-		prediction = regressor.predict(j)
-		if(prediction < 0):
-			prediction = 0
-		y = np.append(y,prediction)
-	y = np.append(y,0)
 	b = []
-	for k in range(2001,year+1):
-		a = str(k)
-		b = np.append(b,a)
-	y = list(y)
-	yearLable = list(b)
+	if accuracy < 0.65:
+		for k in range(2001,2017):
+			a = str(k)
+			b = np.append(b,a)
+		y = list(y)
+		yearLable = list(b)
+		year = 2016
+		msg = "Data is not Suitable for prediction"
+	else:
 
+		for j in range(2017,year+1):
+			prediction = regressor.predict(j)
+			if(prediction < 0):
+				prediction = 0
+			y = np.append(y,prediction)
+		y = np.append(y,0)
+
+		for k in range(2001,year+1):
+			a = str(k)
+			b = np.append(b,a)
+		y = list(y)
+		yearLable = list(b)
+		msg = ""
 	
 
-	return render_template('sll.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
+	return render_template('sll.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg, state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
+
+@app.route('/About.html')
+def About():
+	return render_template("/About.html")
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5000, debug=True)
