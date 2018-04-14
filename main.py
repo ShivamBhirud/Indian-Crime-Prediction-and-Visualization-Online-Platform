@@ -182,7 +182,6 @@ def children():
 	y = test[2:]
 	b = []
 	if accuracy < 0.65:
-		print "hello11"
 		for k in range(2001,2017):
 			a = str(k)
 			b = np.append(b,a)
