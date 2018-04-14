@@ -8,6 +8,8 @@
 
 <head>
 	<meta charset="UTF-8">
+	<center><h3 style="color: red;">{{msg}}</h3></center>
+	
 	<title>{{C_type}} in {{state}} upto year {{year}} </title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"> 
@@ -28,6 +30,7 @@
 	var ctx = document.getElementById("myChart").getContext('2d');
 	var counts = {{pred_data}};
 	var years = {{ years|safe }};
+	var C_type = "{{C_type|safe}}";
 	console.log(counts)
 	var myChart = new Chart(ctx, {
   	type: 'bar',
@@ -35,12 +38,12 @@
         labels:years,
     	   datasets: [{
             type: 'bar',
-            label: 'Rape',
+            label: C_type,
             data: counts,
             backgroundColor: 'grey'
            },{
             type: 'line',
-            label: 'Rape',
+            label: C_type,
             fill: false,
             borderWidth: 4,
             data: counts,
@@ -52,6 +55,26 @@
 			display:true,
 			fontSize:25
 		},
+		scales: {
+			yAxes: [{
+			scaleLabel: {
+				display: true,
+				labelString: 'Number Of Crimes'
+			},
+			ticks: {
+                  fontColor: "red", // this here
+            },
+			}],
+			xAxes: [{
+			scaleLabel: {
+				display: true,
+				labelString: 'Years'
+			},
+			ticks: {
+                  fontColor: "red", // this here
+            },
+			}]
+		} ,
 		legend:{
 			position:'right',
 			labels:{

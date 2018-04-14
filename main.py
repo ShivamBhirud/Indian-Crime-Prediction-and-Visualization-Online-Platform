@@ -51,7 +51,7 @@ def women():
 	C_type = request.form.get("C_Type")
 	state = request.form.get("state")
 
-	df = pd.read_csv("static/StateCAWPred2001_16.csv", header=None)
+	df = pd.read_csv("static/StateWiseCAWPred1990-2016.csv", header=None)
 
 	data1 = df.loc[df[0]==state].values
 	for x in data1:
@@ -64,8 +64,8 @@ def women():
 	trendChangingYear = 2
 	accuracy_max = 0.65
 
-	xTrain = np.array([2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016])
-	yTrain = test[2:18]
+	xTrain = np.array([1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016])
+	yTrain = test[2:29]
 
 	X = df.iloc[0,2:l].values
 	y = test[2:]
@@ -109,7 +109,7 @@ def women():
 			y = np.append(y,prediction)
 		y = np.append(y,0)
 
-		for k in range(2001,year+1):
+		for k in range(1990,year+1):
 			a = str(k)
 			b = np.append(b,a)
 		y = list(y)
@@ -173,22 +173,33 @@ def children():
 	year = int(year)
 	#year = np.array(year)
 	y = test[2:]
-	for j in range(2017,year+1):
-		prediction = regressor.predict(j)
-		if(prediction < 0):
-			prediction = 0
-		y = np.append(y,prediction)
-	y = np.append(y,0)
 	b = []
-	for k in range(1994,year+1):
-		a = str(k)
-		b = np.append(b,a)
-	y = list(y)
-	yearLable = list(b)
+	if accuracy < 0.65:
+		print "hello11"
+		for k in range(2001,2017):
+			a = str(k)
+			b = np.append(b,a)
+		y = list(y)
+		yearLable = list(b)
+		year = 2016
+		msg = "Data is not Suitable for prediction"
+	else:
 
-	
+		for j in range(2017,year+1):
+			prediction = regressor.predict(j)
+			if(prediction < 0):
+				prediction = 0
+			y = np.append(y,prediction)
+		y = np.append(y,0)
 
-	return render_template('children.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
+		for k in range(1994,year+1):
+			a = str(k)
+			b = np.append(b,a)
+		y = list(y)
+		yearLable = list(b)
+		msg = ""
+
+	return render_template('children.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],state=state, year=year,msg=msg, C_type=C_type,pred_data = y,years = yearLable)
 
 @app.route('/ipc.html',methods = ['POST'])
 def ipc():

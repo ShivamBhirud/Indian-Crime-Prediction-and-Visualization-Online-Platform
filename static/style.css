@@ -343,6 +343,11 @@ header a:hover{
 	block-size: 100%;
 }
 
+.container center h1 a:hover{
+	color: crimson;
+	font-weight:bold;
+}
+
 footer{
 	padding:20px;
 	margin-top:0px;
