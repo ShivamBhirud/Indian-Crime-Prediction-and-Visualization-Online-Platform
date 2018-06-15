@@ -14,6 +14,7 @@
 	<center>
 		<center><h3 style="color: red;">{{msg}}</h3></center>
 		<br>
+		
 		<h3>"{{C_type}}" Cases in {{state}} upto Year {{year}}</h3>
 	</center>
 	<div class="container">
@@ -86,6 +87,10 @@
 
   
 </script>
+
+		{% if(msg == "") %}
+		<center><h3 style="color: crimson">Trend Changing Year: {{TCY}}</h3></center> 
+		{% endif %}
 </body>
 
 </html>

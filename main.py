@@ -123,7 +123,7 @@ def women():
 		msg = ""
 	
 	#Finally the template is rendered
-	return render_template('women.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg,state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
+	return render_template('women.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg,state=state, year=year, C_type=C_type,pred_data = y,years = yearLable, TCY = xTrain[trendChangingYear-2])
 
 @app.route('/children.html',methods = ['POST'])
 def children():
@@ -205,7 +205,7 @@ def children():
 		yearLable = list(b)
 		msg = ""
 
-	return render_template('children.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],state=state, year=year,msg=msg, C_type=C_type,pred_data = y,years = yearLable)
+	return render_template('children.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],state=state, year=year,msg=msg, C_type=C_type,pred_data = y,years = yearLable, TCY = xTrain[trendChangingYear-2])
 
 @app.route('/ipc.html',methods = ['POST'])
 def ipc():
@@ -289,7 +289,7 @@ def ipc():
 		msg = ""
 	
 	#Finally the template is rendered.
-	return render_template('ipc.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg, state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
+	return render_template('ipc.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg, state=state, year=year, C_type=C_type,pred_data = y,years = yearLable, TCY = xTrain[trendChangingYear-2])
 
 
 @app.route('/sll.html',methods = ['POST'])
@@ -373,7 +373,7 @@ def sll():
 		msg = ""
 	
 	#Finally the template is rendered.
-	return render_template('sll.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg, state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
+	return render_template('sll.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg, state=state, year=year, C_type=C_type,pred_data = y,years = yearLable, TCY = xTrain[trendChangingYear-2])
 
 
 #routing Path for About page.

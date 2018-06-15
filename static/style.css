@@ -8,7 +8,7 @@ body{
 	line-height:1.5;
 	margin: 0;
 	position: relative;
-	
+	height:100%;
 }
 
 
@@ -37,7 +37,7 @@ ul{
 	flex-wrap: wrap;
 	height: 19vh;
 	background-color: #ffffff;
-	border-bottom:#750791c7 3px solid;
+	border-bottom:black 3px solid;
 }
 .box1{
 	flex: 1;
@@ -81,7 +81,7 @@ header nav{
 }
 
 header .highlight, header .current a{
-	color:#750791c7;
+	color:red;
 	font-weight:bold;
 }
 
@@ -116,13 +116,13 @@ header a:hover{
 	min-height:500px;
 	background-image: url("/static/images/white_wall.png");
 	text-align: left;
-	color: #420650;
+	color: black;
 	border-top: #000000 1px solid;
 	border-bottom:black 1px solid;
 }
 
 #section3 h1 {
-	color: #d03ef5c7;
+	color: red;
 	letter-spacing: 0.05cm;
 	font-size: 35px;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -360,12 +360,24 @@ header a:hover{
 }
 
 footer{
-	padding:20px;
+	padding: 50px;
 	margin-top:0px;
-	color:#ffffff;
-	background-color:#750791c7;
-	text-align:center;
+	margin-bottom:0px;
+	color:black;
+	background: bisque;
+	border-top:black 3px solid;
 }
+footer p {
+	float: left;
+	background: bisque;
+	position: relative; top:-25px;
+}
+#IG{
+	float: right;
+	height:75px;
+	position: relative; top:-40px;
+}
+
 
 
 
