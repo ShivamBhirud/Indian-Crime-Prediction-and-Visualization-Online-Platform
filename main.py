@@ -1,5 +1,4 @@
 #import of packages, Libraries and modules.
-
 from flask import Flask,render_template, request, flash, url_for,jsonify
 import pandas as pd
 import numpy as np
