@@ -283,10 +283,11 @@ header a:hover{
 }
 
 #section9{
-	height:70%;
-	background-image: url("/static/images/prediction.jpg");
+	height:100vh;
+	width: 100%;
 	background-size: cover;
-	background-attachment: fixed;
+	background-image: url("/static/images/pred.jpg") ;
+	background-attachment: fixed; 
 	padding-top: 50px;
 }
 
