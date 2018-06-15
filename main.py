@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 #import of packages, Libraries and modules.
+=======
+#import of packages, libraries and modules.
+
+>>>>>>> f64e93de0f1bc59deb7d91e47fdbb4256d9166c7
 from flask import Flask,render_template, request, flash, url_for,jsonify
 import pandas as pd
 import numpy as np
@@ -41,9 +46,9 @@ def childrenViz():
 def IPCViz():	
 	return render_template('IPCViz.html')
 
-@app.route('/stats.html')
-def Services3():
-	return render_template("stats.html")
+@app.route('/highlights.html')
+def highlights():
+	return render_template("highlights.html")
 
 @app.route('/women.html',methods = ['POST'])
 def women():
@@ -52,7 +57,7 @@ def women():
 	C_type = request.form.get("C_Type")			#Crime type fetching from UI
 	state = request.form.get("state")			#State name fetching from UI
 
-	df = pd.read_csv("static/StateCAWPred2001_16.csv", header=None) #reading CSV file.
+	df = pd.read_csv("static/StateWiseCAWPred1990-2016.csv", header=None)
 
 	data1 = df.loc[df[0]==state].values			#Selecting State and its attributes.
 	for x in data1:
@@ -64,15 +69,14 @@ def women():
 	l = len(df.columns)					
 	trendChangingYear = 2	
 
-	# Year array for Javascript for Labeling to Graph  
-	xTrain = np.array([2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016])
-	yTrain = test[2:18]
+	xTrain = np.array([1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016])
+	yTrain = test[2:29]
 
 	X = df.iloc[0,2:l].values
 	y = test[2:]
-	regressor = LinearRegression()		#regression Algorithm Called.
+	regressor = LinearRegression()		#regression algorithm cealled.
 	regressor.fit(X.reshape(-1,1),y)	#Data set is fitted in regression and Reshaped it.
-	accuracy = regressor.score(X.reshape(-1,1),y)	#Finding Accuracy of Prdictions.
+	accuracy = regressor.score(X.reshape(-1,1),y)	#Finding Accuracy of Predictions.
 	print accuracy
 	accuracy_max = 0.65
 
@@ -89,14 +93,14 @@ def women():
 				accuracy_max = accuracy
 				print accuracy_max
 				trendChangingYear = a
-	print trendChangingYear			#Printing Tread Changing Year on server terminal.
+	print trendChangingYear			#Printing Trend Changing Year on server terminal.
 	print test[trendChangingYear]
 	print xTrain[trendChangingYear-2]
 	year = int(year)
 	y = test[2:]
 	b = []
 
-	#If accuracy is Lower than 65% We are just Visualizing the data not predicting it.
+	#If accuracy is Lower than 65%, only visualization of the data is shown - no predictions
 	if accuracy < 0.65:				
 		for k in range(2001,2017):
 			a = str(k)
@@ -105,7 +109,7 @@ def women():
 		yearLable = list(b)
 		msg = "Data is not Sutaible for prediction"
 
-	#Else we are predicting and Run time adding data and labels for graph.
+	#Else predictions are shown and Run time data and labels are added to the graph.
 	else:
 
 		for j in range(2017,year+1):
@@ -115,15 +119,15 @@ def women():
 			y = np.append(y,prediction)
 		y = np.append(y,0)
 
-		for k in range(2001,year+1):
+		for k in range(1990,year+1):
 			a = str(k)
 			b = np.append(b,a)
 		y = list(y)
 		yearLable = list(b)
 		msg = ""
 	
-	#Finally redering the template.
-	return render_template('women.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg,state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
+	#Finally the template is rendered
+	return render_template('women.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg,state=state, year=year, C_type=C_type,pred_data = y,years = yearLable, TCY = xTrain[trendChangingYear-2])
 
 @app.route('/children.html',methods = ['POST'])
 def children():
@@ -147,7 +151,7 @@ def children():
 	trendChangingYear = 2
 	accuracy_max = 0.65
 
-	# Year array for Javascript for Labeling to Graph  
+	# Year array for Javascript for Labeling to the Graph  
 	xTrain = np.array([1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016])
 	yTrain = test[2:25]
 
@@ -170,7 +174,7 @@ def children():
 				accuracy_max = accuracy
 				print accuracy_max
 				trendChangingYear = a
-	print trendChangingYear			#Printing Tread Changing Year on server terminal.
+	print trendChangingYear			#Printing Trend Changing Year on server terminal.
 	print test[trendChangingYear]
 	print xTrain[trendChangingYear-2]
 	yTrain = test[trendChangingYear:]
@@ -180,22 +184,32 @@ def children():
 
 	year = int(year)
 	y = test[2:]
-	for j in range(2017,year+1):
-		prediction = regressor.predict(j)
-		if(prediction < 0):
-			prediction = 0
-		y = np.append(y,prediction)
-	y = np.append(y,0)
 	b = []
-	for k in range(1994,year+1):
-		a = str(k)
-		b = np.append(b,a)
-	y = list(y)
-	yearLable = list(b)
+	if accuracy < 0.65:
+		for k in range(2001,2017):
+			a = str(k)
+			b = np.append(b,a)
+		y = list(y)
+		yearLable = list(b)
+		year = 2016
+		msg = "Data is not Suitable for prediction"
+	else:
 
-	
-	#Finally redering the template.	
-	return render_template('children.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
+		for j in range(2017,year+1):
+			prediction = regressor.predict(j)
+			if(prediction < 0):
+				prediction = 0
+			y = np.append(y,prediction)
+		y = np.append(y,0)
+
+		for k in range(1994,year+1):
+			a = str(k)
+			b = np.append(b,a)
+		y = list(y)
+		yearLable = list(b)
+		msg = ""
+
+	return render_template('children.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],state=state, year=year,msg=msg, C_type=C_type,pred_data = y,years = yearLable, TCY = xTrain[trendChangingYear-2])
 
 @app.route('/ipc.html',methods = ['POST'])
 def ipc():
@@ -244,14 +258,14 @@ def ipc():
 				accuracy_max = accuracy
 				print accuracy_max
 				trendChangingYear = a
-	print trendChangingYear				#Printing Tread Changing Year on server terminal.
+	print trendChangingYear				#Printing Trend Changing Year on server terminal.
 	print test[trendChangingYear]
 	print xTrain[trendChangingYear-2]
 	year = int(year)
 	y = test[2:]
 	b = []
 
-	#If accuracy is Lower than 65% We are just Visualizing the data not predicting it.
+	#If accuracy is Lower than 65%, only Visualization of the data is shown - no predictions.
 	if accuracy < 0.65:
 		for k in range(2001,2017):
 			a = str(k)
@@ -261,7 +275,7 @@ def ipc():
 		year = 2016
 		msg = "Data is not Suitable for prediction"
 
-	#Else we are predicting and Run time adding data and labels for graph.
+	#Else predictions are shown and Run time data and labels are added to the graph.
 	else:
 
 		for j in range(2017,year+1):
@@ -278,8 +292,8 @@ def ipc():
 		yearLable = list(b)
 		msg = ""
 	
-	#Finally redering the template.
-	return render_template('ipc.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg, state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
+	#Finally the template is rendered.
+	return render_template('ipc.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg, state=state, year=year, C_type=C_type,pred_data = y,years = yearLable, TCY = xTrain[trendChangingYear-2])
 
 
 @app.route('/sll.html',methods = ['POST'])
@@ -328,14 +342,14 @@ def sll():
 				accuracy_max = accuracy
 				print accuracy_max
 				trendChangingYear = a
-	print trendChangingYear				#Printing Tread Changing Year on server terminal.
+	print trendChangingYear				#Printing Trend Changing Year on server terminal.
 	print test[trendChangingYear]
 	print xTrain[trendChangingYear-2]
 	year = int(year)
 	y = test[2:]
 	b = []
 
-	#If accuracy is Lower than 65% We are just Visualizing the data not predicting it.
+	#If accuracy is Lower than 65%, only Visualization of the data is shown - not predictions.
 	if accuracy < 0.65:
 		for k in range(2001,2017):
 			a = str(k)
@@ -345,7 +359,7 @@ def sll():
 		year = 2016
 		msg = "Data is not Suitable for prediction"
 
-	#Else we are predicting and Run time adding data and labels for graph.
+	#Else predictions are shown and Run time data and labels are added to the graph.
 	else:
 
 		for j in range(2017,year+1):
@@ -362,8 +376,8 @@ def sll():
 		yearLable = list(b)
 		msg = ""
 	
-	#Finally redering the template.
-	return render_template('sll.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg, state=state, year=year, C_type=C_type,pred_data = y,years = yearLable)
+	#Finally the template is rendered.
+	return render_template('sll.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg, state=state, year=year, C_type=C_type,pred_data = y,years = yearLable, TCY = xTrain[trendChangingYear-2])
 
 
 #routing Path for About page.

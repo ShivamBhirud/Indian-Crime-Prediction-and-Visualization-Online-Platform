@@ -8,7 +8,7 @@ body{
 	line-height:1.5;
 	margin: 0;
 	position: relative;
-	
+	height:100%;
 }
 
 
@@ -37,7 +37,7 @@ ul{
 	flex-wrap: wrap;
 	height: 19vh;
 	background-color: #ffffff;
-	border-bottom:#750791c7 3px solid;
+	border-bottom:black 3px solid;
 }
 .box1{
 	flex: 1;
@@ -81,7 +81,7 @@ header nav{
 }
 
 header .highlight, header .current a{
-	color:#750791c7;
+	color:red;
 	font-weight:bold;
 }
 
@@ -116,13 +116,13 @@ header a:hover{
 	min-height:500px;
 	background-image: url("/static/images/white_wall.png");
 	text-align: left;
-	color: #420650;
+	color: black;
 	border-top: #000000 1px solid;
 	border-bottom:black 1px solid;
 }
 
 #section3 h1 {
-	color: #d03ef5c7;
+	color: red;
 	letter-spacing: 0.05cm;
 	font-size: 35px;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -191,10 +191,10 @@ header a:hover{
 
 
 #section6 h1 {
-	color: #d03ef5c7;
-	letter-spacing: 0.05cm;
-	font-size: 35px;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	
+	font-size: 30px;
+	font-family: FancyFont;
+	block-size: 100%;
 	margin-left: 20px;
 	padding-top: 20px;
 }
@@ -206,10 +206,15 @@ header a:hover{
 }
 #section6 .imgViz{
 	float:right;
+	padding-right: 50px;
+	margin-top:50px;
+	
+	
 }
 
 #section6 p {
 	font-size: 30px;
+	color: #000000;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	margin-left: 20px;
 	padding-top: 0px;
@@ -241,6 +246,7 @@ header a:hover{
 #section7 .imgStat{
 	float: left;
 	padding-top: 5%;
+	padding-left:50px;
 }
 
 
@@ -264,7 +270,7 @@ header a:hover{
 #section8 h1{
 	font-family: FancyFont;
 	font-size:30px;
-	padding-top: 30px;
+	padding-top: 60px;
 	block-size: 100%;
 }
 
@@ -295,6 +301,7 @@ header a:hover{
 	font-family: FancyFont;
 	font-size:30px;
 	padding-top: 30px;
+	margin-top:40px;
 	block-size: 100%;
 }
 
@@ -311,12 +318,14 @@ header a:hover{
 	background-image: url("/static/images/white_wall.png");
 	text-align: left;
 	color: #420650;
+	padding-top:20px;
 }
 
 #section12 h1{
 	font-family: FancyFont;
 	font-size:30px;
-	padding-top: 30px;
+	padding-top: 20px;
+	margin-top:40px;
 	block-size: 100%;
 }
 
@@ -334,22 +343,41 @@ header a:hover{
 	background-image: url("/static/images/white_wall.png");
 	text-align: left;
 	color: #420650;
+	margin-left: 10px;
 }
 
 #section14 h1{
 	font-family: FancyFont;
 	font-size:30px;
-	padding-top: 30px;
+	padding-top: 0px;
+	margin-top: 40px;
 	block-size: 100%;
 }
 
-footer{
-	padding:20px;
-	margin-top:0px;
-	color:#ffffff;
-	background-color:#750791c7;
-	text-align:center;
+.container center h1 a:hover{
+	color: crimson;
+	font-weight:bold;
 }
+
+footer{
+	padding: 50px;
+	margin-top:0px;
+	margin-bottom:0px;
+	color:black;
+	background: bisque;
+	border-top:black 3px solid;
+}
+footer p {
+	float: left;
+	background: bisque;
+	position: relative; top:-25px;
+}
+#IG{
+	float: right;
+	height:75px;
+	position: relative; top:-40px;
+}
+
 
 
 

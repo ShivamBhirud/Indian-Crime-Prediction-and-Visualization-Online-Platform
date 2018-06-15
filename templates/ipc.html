@@ -16,7 +16,7 @@
 
 <body>
 	<center>
-		{{msg}}
+		<center><h3 style="color: red;">{{msg}}</h3></center>
 		<br>
 		<h3>"{{C_type}}" Cases in {{state}} upto Year {{year}}</h3>
 	</center>
@@ -29,6 +29,7 @@
 	var ctx = document.getElementById("myChart").getContext('2d');
 	var counts = {{pred_data}};
 	var years = {{ years|safe }};
+	var C_type = "{{C_type|safe}}";
 	console.log(counts)
 	var myChart = new Chart(ctx, {
   	type: 'bar',
@@ -36,12 +37,12 @@
         labels:years,
     	   datasets: [{
             type: 'bar',
-            label: 'Rape',
+            label: C_type,
             data: counts,
             backgroundColor: 'grey'
            },{
             type: 'line',
-            label: 'Rape',
+            label: C_type,
             fill: false,
             borderWidth: 4,
             data: counts,
@@ -53,6 +54,26 @@
 			display:true,
 			fontSize:25
 		},
+		scales: {
+			yAxes: [{
+			scaleLabel: {
+				display: true,
+				labelString: 'Number Of Crimes'
+			},
+			ticks: {
+                  fontColor: "red", // this here
+            },
+			}],
+			xAxes: [{
+			scaleLabel: {
+				display: true,
+				labelString: 'Years'
+			},
+			ticks: {
+                  fontColor: "red", // this here
+            },
+			}]
+		} ,
 		legend:{
 			position:'right',
 			labels:{
@@ -68,7 +89,9 @@
   
 </script>
 
-
+		{% if(msg == "") %}
+		<center><h3 style="color: crimson">Trend Changing Year: {{TCY}}</h3></center> 
+		{% endif %}
 </body>
 
 </html>

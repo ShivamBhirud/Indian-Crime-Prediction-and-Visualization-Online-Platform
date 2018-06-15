@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+	<head>	
+        <meta http-equiv="pragma" content="no-cache"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Crime Prediction System | Statistics</title>
+        <link rel="stylesheet" href="/static/style.css">
+        <link rel="stylesheet" href="/static/accordion.css">
+        <link rel="stylesheet" href="/static/animate.css">
+        
+        
+	</head>
+
+	<body>
+
+<!--
+		<header style="height: 120px;">
+            
+            <div class="container">
+                <h1 style="font-size: 50px;">
+                    <img src="{{url_for('static', filename='images/logo_trial.png')}}" height = "90" width = "115" alt="Banner Image"/>
+                     Indian <span class="highlight">Crime</span> Analysis
+                </h1> 
+                
+                <nav>
+                <ul>
+                    <li><a href="home.html">HOME</a></li> 
+                    <li><a href="#">ABOUT</a></li> 
+                    <li class="current"><a href="#">SERVICES</a></li> 
+                </ul>              
+                </nav>
+
+            </div>
+        </header>
+    -->
+        <header class = "header1">
+            <div class = "box1">
+                <a href="home.html"><img src="{{url_for('static', filename='images/logo_trial.png')}}" height = "115vh" width = "90%" alt="Banner Image"/></a>
+            </div>
+            <div class = "box2">
+                <h1>Indian <span class="highlight">Crime</span> Analysis</h1>
+            </div>
+            <div class = "box3">
+                <nav>
+                    <ul>
+                        <li> <a href="/About.html">ABOUT</a> </li> 
+                        <li class="current"><a href="/home.html">HOME</a></li>
+                    </ul>              
+                </nav>
+            </div>
+        </header>
+
+<!--header completed-->
+
+<section id="section13">
+    <div class="container">
+    </div>
+</section>
+
+<section id="section14">
+    <div class="container">
+        <center><h1>HIGHLIGHTS</h1></center> 
+        <div class="doc">
+        <h2 style = "font-family:verdana; padding-left: 0%; text-align:left">Predictions:</h2>
+        <li>The adjusted threshold value for the predictions' accuracy is 65%, as the study of algorithms suggests that not all the standard algorithms are suitable for these predictions when considered directly.</li>
+        <li>The accuracy of the predictions of certain states for a particular crime type show drastic values which are improved by identifying the trend changing year. This compensates for the issue of insufficient or unsuitable data being used for predictions.</li>
+        <li>The data of newly established states has also been considered which may not have sufficient data for predictions. This is handled using data wrangling.</li>
+        <li>This system would achieve more accuracy and functionalities as the data supplied to the system would increase.</li>
+        <li>Certain cases of prediction may not seem to be ideal due to the availability of data which depends on the timely and systematic reporting of data. The lack of ideal reported data indicates that there could be: 
+            <li style="margin-left: 40px;">Lack of awareness among the victims</li>
+            <li style="margin-left: 40px;">Fear of the loss of reputation of the victims in the society</li>
+            <li style="margin-left: 40px;">Disorganized reporting of cases</li>
+        </li>
+        <h2 style = "font-family:verdana; padding-left: 0%; text-align:left">Visualizations:</h2>
+        <li>The parameters considered in visualization are: the crime rates per one lakh people and the literacy rates for every state.</li>
+        <li>The graph of certain states shows radical progress over the years, which may be misinterpreted as the increase in the number of crime in that state but the actual reason for this change is the increase in literacy rates of that state giving rise to the increase in awareness for reporting the crime cases.</li>
+        <li style="margin-bottom:40px;">The visuals provide a broader view of comparison of crime rates depending on the population as well as literacy of all the states together, or a fixed number of states as per the user's choice. Similary, the progress of a single state over the years can also be observed.</li>
+        </div>
+    </div>
+</section>
+        
+
+    
+
+
+        <footer>
+            <p>Crime Prediction System, Copyright &copy; 2018</p>
+            <img src="/static/images/indiagov.png" id="IG">
+
+		</footer>
+	</body>
+
+</html>

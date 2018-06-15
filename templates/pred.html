@@ -17,7 +17,7 @@
 
             <header class = "header1">
                     <div class = "box1">
-                        <img src="{{url_for('static', filename='images/logo_trial.png')}}" height = "115vh" width = "90%" alt="Banner Image"/>
+                        <a href="home.html"><img src="{{url_for('static', filename='images/logo_trial.png')}}" height = "115vh" width = "90%" alt="Banner Image"/></a>
                     </div>
                     <div class = "box2">
                         <h1>Indian <span class="highlight">Crime</span> Analysis</h1>
@@ -25,7 +25,7 @@
                     <div class = "box3">
                         <nav>
                             <ul>
-                                <li> <a href="#section8">ABOUT</a> </li> 
+                                <li> <a href="About.html">ABOUT</a> </li> 
                                 <li class="current"><a href="/home.html">HOME</a></li>
                             </ul>              
                         </nav>
@@ -41,37 +41,41 @@
 
 <section id="section10">
     <div class="container">
-            <h1>PREDICTIONS</h1>
+            <center><h1>PREDICTIONS</h1></center>
             <div class="doc">
                 <section id="menu1">
                     <a href="#menu1">CRIME AGAINST WOMEN</a>
-                    <p>The women sector is very prone to be the victims of most of the crimes taking place in India. Following predictions are categorized according to the years of occurence. Please select the desired option to view the results.The notion that acts such as murder, rape and theft are to be prohibited exists worldwide.[5] What precisely is a criminal offence is defined by criminal law of each country. While many have a catalogue of crimes called the criminal code, in some common law countries no such comprehensive statute exists.
+                    
 
-                        The state (government) has the power to severely restrict one's liberty for committing a crime. In modern societies, there are procedures to which investigations and trials must adhere. If found guilty, an offender may be sentenced to a form of reparation such as a community sentence, or, depending on the nature of their offence, to undergo imprisonment, life imprisonment or, in some jurisdictions, execution.</p>
+                        
                     <center>
 		  	                <form action="women.html" method="POST">
-                            <h3 style = "font-family:verdana; padding-left: 0%;float: left;">Choose Year of Prediction:-</h3>
+                            <h3 style = "font-family:verdana; padding-left: 0%; text-align:left">Select the year, crime type and state of your choice for appropriate predictions:</h3><br>
+                            
                             <select name = "Predict_Year" style="padding-top:20px;">
+                                <option value="2016"><h2>Select Year</h2> </option>
                                 <option value="2017"><h2>2017</h2> </option>
                                 <option value="2018"><h2>2018</h2> </option>
                                 <option value="2019"><h2>2019</h2> </option>
                                 <option value="2020"><h2>2020</h2> </option>
                             </select>
-
+                            <br>
+                            
                             <select name = "C_Type" style="padding-top:20px;">
+                                <option value="RAPE"><h2>Select Crime Type (Default - Rape)</h2> </option>
                                 <option value="RAPE"><h2>RAPE</h2> </option>
                                 <option value="KIDNAPPING & ABDUCTION"><h2>KIDNAPPING & ABDUCTION</h2> </option>
                                 <option value="DOWRY DEATH"><h2>DOWRY DEATH</h2> </option>
                                 <option value="ASSAULT ON WOMEN WITH INTENT TO OUTRAGE HER MODESTY"><h2>ASSAULT ON WOMEN WITH INTENT TO OUTRAGE HER MODESTY</h2> </option>
                                 <option value="INSULT TO THE MODESTY OF WOMEN"><h2>INSULT TO THE MODESTY OF WOMEN</h2> </option>
                                 <option value="CRUELTY BY HUSBAND OR RELATIVES"><h2>CRUELTY BY HUSBAND OR RELATIVES</h2> </option>
-                                <option value="IMMORAL TRAFFIC(PREVENTION)ACT"><h2>IMMORAL TRAFFIC(PREVENTION)ACT</h2> </option>
-                                <option value="INDECENT REPRESENTATION OF WOMEN(PREVENTION)ACT"><h2>INDECENT REPRESENTATION OF WOMEN(PREVENTION)ACT</h2> </option>    
                                 <option value="TOTAL CRIMES AGAINST WOMEN"><h2>TOTAL CRIMES AGAINST WOMEN</h2> </option> 
                             </select>
-
+                            <br>
+                            
                             <select name = "state" style="padding-top:20px;">
-                                <option value="INDIA"><h2>*INDIA*</h2> </option>
+                                <option value="INDIA"><h2>Select States (Default - ALL STATES)</h2> </option>
+                                <option value="INDIA"><h2>ALL STATES</h2> </option>
                                 <option value="Andhra Pradesh"><h2>Andhra Pradesh</h2> </option>
                                 <option value="Arunachal Pradesh"><h2>Arunachal Pradesh</h2> </option>
                                 <option value="Assam"><h2>Assam</h2> </option>
@@ -118,24 +122,22 @@
             
                 <section id="menu2">
                     <a href="#menu2">CRIME AGAINST CHILDREN</a>
-                    <p>The children sector is very prone to be the victims of most of the crimes taking place in India. Following predictions are categorized according to the years of occurence. Please select the desired option to view the results.The notion that acts such as murder, rape and theft are to be prohibited exists worldwide.[5] What precisely is a criminal offence is defined by criminal law of each country. While many have a catalogue of crimes called the criminal code, in some common law countries no such comprehensive statute exists.
-
-                        The state (government) has the power to severely restrict one's liberty for committing a crime. In modern societies, there are procedures to which investigations and trials must adhere. If found guilty, an offender may be sentenced to a form of reparation such as a community sentence, or, depending on the nature of their offence, to undergo imprisonment, life imprisonment or, in some jurisdictions, execution.</p>
+                    
                         <center>
                                 <form action="children.html" method="POST">
-                              <h3 style = "font-family:verdana; padding-left: 0%;float: left;">Choose Year of Prediction:-</h3>
+                                        <h3 style = "font-family:verdana; padding-left: 0%; text-align:left">Select the year, crime type and state of your choice for appropriate predictions:</h3><br>
   
                               <select name = "Predict_Year" style="padding-top:20px;">
+                                <option value="2016"><h2>Select Year</h2> </option>
                                 <option value="2017"><h2>2017</h2> </option>
                                 <option value="2018"><h2>2018</h2> </option>
                                 <option value="2019"><h2>2019</h2> </option>
                                 <option value="2020"><h2>2020</h2> </option>                              
                             </select>
                             <br>
+                            
                             <select name = "C_Type" style="padding-top:20px;">
-                                
-                                <option value="INFANTICIDE"><h2>INFANTICIDE</h2> </option>
-                                <option value="MURDER"><h2>MURDER</h2> </option>
+                                <option value="INFANTICIDE"><h2>Select Crime Type (Default - INFANTICIDE)</h2> </option>
                                 <option value="RAPE"><h2>RAPE</h2> </option>
                                 <option value="KIDNAPPING & ABDUCTION"><h2>KIDNAPPING & ABDUCTION</h2> </option>    
                                 <option value="FOETICIDE"><h2>FOETICIDE</h2> </option>
@@ -145,12 +147,12 @@
                                 <option value="BUYING OF GIRLS FOR PROSTITUTION"><h2>BUYING OF GIRLS FOR PROSTITUTION</h2> </option>
                                 <option value="SELLING OF GIRLS FOR PROSTITUTION"><h2>SELLING OF GIRLS FOR PROSTITUTION</h2> </option>
                                 <option value="PROHIBITION OF CHILD MARRIAGE ACT, 2006"><h2>PROHIBITION OF CHILD MARRIAGE ACT, 2006</h2> </option>
-                                <option value="OTHER CRIMES"><h2>OTHER CRIMES</h2> </option>
                                 <option value="TOTAL CRIMES AGAINST CHILDREN"><h2>TOTAL CRIMES AGAINST CHILDREN</h2> </option>
                             </select>
-
+                            <br>
                             <select name = "state" style="padding-top:20px;">
-                                <option value="INDIA"><h2>*INDIA*</h2> </option>
+                                <option value="INDIA"><h2>Select States (Default - ALL STATES)</h2> </option>
+                                <option value="INDIA"><h2>ALL STATES</h2> </option>
                                 <option value="Andhra Pradesh"><h2>Andhra Pradesh</h2> </option>
                                 <option value="Arunachal Pradesh"><h2>Arunachal Pradesh</h2> </option>
                                 <option value="Assam"><h2>Assam</h2> </option>
@@ -186,8 +188,8 @@
                                 <option value="Delhi UT"><h2>Delhi UT</h2> </option>
                                 <option value="Lakshadweep"><h2>Lakshadweep</h2> </option>
                                 <option value="Puducherry"><h2>Puducherry</h2> </option>
-
-                                </select>
+                            </select>
+                            <br>
 
                                 <input type="submit" value="Submit">
                               </form>
@@ -198,21 +200,22 @@
             
                 <section id="menu4">
                     <a href="#menu4">IPC CRIMES</a>
-                    <p>The women sector is very prone to be the victims of most of the crimes taking place in India. Following predictions are categorized according to the years of occurence. Please select the desired option to view the results.The notion that acts such as murder, rape and theft are to be prohibited exists worldwide.[5] What precisely is a criminal offence is defined by criminal law of each country. While many have a catalogue of crimes called the criminal code, in some common law countries no such comprehensive statute exists.
-
-                        The state (government) has the power to severely restrict one's liberty for committing a crime. In modern societies, there are procedures to which investigations and trials must adhere. If found guilty, an offender may be sentenced to a form of reparation such as a community sentence, or, depending on the nature of their offence, to undergo imprisonment, life imprisonment or, in some jurisdictions, execution.</p>
+                    
                         <center>
                               <form action="ipc.html" method="POST">
-                              <h3 style = "font-family:verdana; padding-left: 0%;float: left;">Choose Year of Prediction:-</h3>
+                                    <h3 style = "font-family:verdana; padding-left: 0%; text-align:left">Select the year, crime type and state of your choice for appropriate predictions:</h3><br>
   
                               <select name = "Predict_Year" style="padding-top:20px;">
+                                <option value="2016"><h2>Select Year</h2> </option>
                                 <option value="2017"><h2>2017</h2> </option>
                                 <option value="2018"><h2>2018</h2> </option>
                                 <option value="2019"><h2>2019</h2> </option>
                                 <option value="2020"><h2>2020</h2> </option>
                               </select>
+                              <br>
 
                             <select name = "C_Type" style="padding-top:20px;">
+                                <option value="MURDER"><h2>Select Crime Type (Default - MURDER)</h2> </option>
                                 <option value="MURDER"><h2>MURDER</h2> </option>
                                 <option value="ATTEMPT TO COMMIT MURDER"><h2>ATTEMPT TO COMMIT MURDER</h2> </option>
                                 <option value="CULPABLE HOMICIDE NOT AMOUNTING TO MURDER"><h2>CULPABLE HOMICIDE NOT AMOUNTING TO MURDER</h2> </option>
@@ -237,9 +240,11 @@
                                 <option value="OTHER IPC CRIMES"><h2>OTHER IPC CRIMES</h2> </option>    
                                 <option value="TOTAL IPC CRIMES"><h2>TOTAL IPC CRIMES</h2> </option> 
                             </select>
+                            <br>
 
                             <select name = "state" style="padding-top:20px;">
-                                <option value="INDIA"><h2>*INDIA*</h2> </option>
+                                <option value="INDIA"><h2>Select States (Default - ALL STATES)</h2> </option>
+                                <option value="INDIA"><h2>ALL STATES</h2> </option>
                                 <option value="Andhra Pradesh"><h2>Andhra Pradesh</h2> </option>
                                 <option value="Arunachal Pradesh"><h2>Arunachal Pradesh</h2> </option>
                                 <option value="Assam"><h2>Assam</h2> </option>
@@ -275,7 +280,6 @@
                                 <option value="Delhi UT"><h2>Delhi UT</h2> </option>
                                 <option value="Lakshadweep"><h2>Lakshadweep</h2> </option>
                                 <option value="Puducherry"><h2>Puducherry</h2> </option>
-
                                 </select>
                                 <br>
                                 <input type="submit" value="Submit">
@@ -285,21 +289,22 @@
             
                 <section id="menu5">
                     <a href="#menu5">SLL CRIMES</a>
-                    <p>The women sector is very prone to be the victims of most of the crimes taking place in India. Following predictions are categorized according to the years of occurence. Please select the desired option to view the results.The notion that acts such as murder, rape and theft are to be prohibited exists worldwide.[5] What precisely is a criminal offence is defined by criminal law of each country. While many have a catalogue of crimes called the criminal code, in some common law countries no such comprehensive statute exists.
-
-                        The state (government) has the power to severely restrict one's liberty for committing a crime. In modern societies, there are procedures to which investigations and trials must adhere. If found guilty, an offender may be sentenced to a form of reparation such as a community sentence, or, depending on the nature of their offence, to undergo imprisonment, life imprisonment or, in some jurisdictions, execution.</p>
+                    
                         <center>
                                 <form action="sll.html" method="POST">
-                              <h3 style = "font-family:verdana; padding-left: 0%;float: left;">Choose Year of Prediction:-</h3>
+                                        <h3 style = "font-family:verdana; padding-left: 0%; text-align:left">Select the year, crime type and state of your choice for appropriate predictions:</h3><br>
   
                               <select name = "Predict_Year" style="padding-top:20px;">
-                              <option value="2017"><h2>2017</h2> </option>
-                              <option value="2018"><h2>2018</h2> </option>
-                              <option value="2019"><h2>2019</h2> </option>
-                              <option value="2020"><h2>2020</h2> </option>
+                                <option value="2016"><h2>Select Year</h2> </option>
+                                <option value="2017"><h2>2017</h2> </option>
+                                <option value="2018"><h2>2018</h2> </option>
+                                <option value="2019"><h2>2019</h2> </option>
+                                <option value="2020"><h2>2020</h2> </option>
                               </select>
+                              <br>
 
                               <select name = "C_Type" style="padding-top:20px;">
+                                <option value="ARMS ACT, 1959"><h2>Select Crime Type (Default - ARMS ACT, 1959)</h2> </option>
                                 <option value="ARMS ACT, 1959"><h2>ARMS ACT, 1959</h2> </option>
                                 <option value="NARCOTIC DRUGS & PSYCHOTROPIC SUBSTANCES ACT, 1985"><h2>NARCOTIC DRUGS & PSYCHOTROPIC SUBSTANCES ACT, 1985</h2> </option>
                                 <option value="GAMBLING ACT, 1867"><h2>GAMBLING ACT, 1867</h2> </option>
@@ -315,7 +320,6 @@
                                 <option value="ANTIQUITIES & ART TREASURES ACT, 1972"><h2>ANTIQUITIES & ART TREASURES ACT, 1972</h2> </option>
                                 <option value="DOWRY PROHIBITION ACT, 1961"><h2>DOWRY PROHIBITION ACT, 1961</h2> </option>
                                 <option value="PROHIBITION OF CHILD MARRIAGE ACT, 2006"><h2>PROHIBITION OF CHILD MARRIAGE ACT, 2006</h2> </option>
-                                <option value="HURT/GREVIOUS HURT"><h2>HURT/GREVIOUS HURT</h2> </option>
                                 <option value="INDECENT REP. OF WOMEN(P) ACT, 1986"><h2>INDECENT REP. OF WOMEN(P) ACT, 1986</h2> </option>
                                 <option value="COPYRIGHT ACT, 1957"><h2>COPYRIGHT ACT, 1957</h2> </option>
                                 <option value="SC/ST (PREVENTION OF ATTROCITIES) ACT, 1989"><h2>SC/ST (PREVENTION OF ATTROCITIES) ACT, 1989</h2> </option>
@@ -323,9 +327,10 @@
                                 <option value="OTHER IPC CRIMES"><h2>OTHER SLL CRIMES</h2> </option>    
                                 <option value="TOTAL IPC CRIMES"><h2>TOTAL SLL CRIMES</h2> </option> 
                             </select>
-
+                            <br>
                             <select name = "state" style="padding-top:20px;">
-                                <option value="INDIA"><h2>*INDIA*</h2> </option>
+                                <option value="INDIA"><h2>Select States (Default - ALL STATES)</h2> </option>
+                                <option value="INDIA"><h2>ALL STATES</h2> </option>
                                 <option value="Andhra Pradesh"><h2>Andhra Pradesh</h2> </option>
                                 <option value="Arunachal Pradesh"><h2>Arunachal Pradesh</h2> </option>
                                 <option value="Assam"><h2>Assam</h2> </option>
@@ -378,7 +383,9 @@
 
 
         <footer>
-			<p>Indian Crime Analysis, Copyright &copy; 2018</p>
+            <p>Indian Crime Analysis, Copyright &copy; 2018</p>
+            <img src="/static/images/indiagov.png" id="IG">
+
 		</footer>
 	</body>
 
