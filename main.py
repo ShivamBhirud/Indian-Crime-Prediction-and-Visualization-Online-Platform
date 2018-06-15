@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 #import of packages, Libraries and modules.
-=======
-#import of packages, libraries and modules.
-
->>>>>>> f64e93de0f1bc59deb7d91e47fdbb4256d9166c7
 from flask import Flask,render_template, request, flash, url_for,jsonify
 import pandas as pd
 import numpy as np
@@ -56,7 +51,7 @@ def women():
 	year = request.form.get("Predict_Year")		#Year fetching From UI.
 	C_type = request.form.get("C_Type")			#Crime type fetching from UI
 	state = request.form.get("state")			#State name fetching from UI
-
+	
 	df = pd.read_csv("static/StateWiseCAWPred1990-2016.csv", header=None)
 
 	data1 = df.loc[df[0]==state].values			#Selecting State and its attributes.
@@ -125,7 +120,8 @@ def women():
 		y = list(y)
 		yearLable = list(b)
 		msg = ""
-	
+	if C_type == "ASSAULT ON WOMEN WITH INTENT TO OUTRAGE HER MODESTY":
+		C_type = "ASSAULT ON WOMEN"
 	#Finally the template is rendered
 	return render_template('women.html',data = [accuracy,yTrain,xTrain,state,year,data1,X,y,test,l],msg = msg,state=state, year=year, C_type=C_type,pred_data = y,years = yearLable, TCY = xTrain[trendChangingYear-2])
 
